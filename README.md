@@ -3,7 +3,7 @@
 ## Description
 
 This program is a simple contract written in Solidity, a programming language used for developing smart contracts on the Ethereum blockchain.
-This contract has public variables that store the details about my token (tokenName, tokenAbbrv, totalSupply).
+This contract has public variables that store the details about my token (MYTOKEN, MTN, totalSupply).
 This contract has a mapping of addresses to balances.
 This has a mint function that takes two parameters that increases the total supply by the value specified to mint and increases the balance of the address that will be minted by that value.
 This contract has a burn function, which works the opposite of the mint function, as it will destroy tokens.
@@ -19,32 +19,30 @@ To run this program, you can use Remix, an online Solidity IDE. To get started, 
 Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., MyToken.sol). Copy and paste the following code into the file:
 
 ```javascript
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
-
 contract MyToken {
     // public variables here
-    string public tokenName = "MYTOKEN";
-    string public tokenAbbrv = "MTN";
-    uint256 public totalSupply = 0;
+    string public name = "MYTOKEN";
+    string public symbol = "MTN";
+    uint public totalSupply = 0;
 
     // mapping variable here
-    mapping(address => uint256) public balances;
+    mapping(address => uint) public balances;
 
     // mint function
-    function mint(address to, uint256 value) public {
+    function mint(address to, uint value) public {
         totalSupply += value;
         balances[to] += value;
     }
 
     // burn function
-    function burn(address from, uint256 value) public {
+    function burn(address to, uint value) public {
         if (balances[to] >= value) {
             totalSupply -= value;
             balances[to] -= value;
         }
     }
 }
+
 
 ```
 
